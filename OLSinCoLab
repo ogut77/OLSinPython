@@ -7,7 +7,6 @@ from sklearn.metrics import mean_squared_error, r2_score
 import pandas as pd 
 import statsmodels.formula.api as smf
 data1=pd.read_csv("https://hogut.weebly.com/uploads/1/8/1/6/18163409/cars.csv",delimiter=';')
-#data1 = pd.read_csv("/content/gdrive/My Drive/cars.csv",delimiter=';') 
 print(data1[:5])
 lndata1=np.log(data1)
 print(lndata1[:5])
