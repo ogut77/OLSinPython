@@ -1,0 +1,38 @@
+
+import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt2
+import numpy as np
+from sklearn import datasets, linear_model
+from sklearn.metrics import mean_squared_error, r2_score
+import pandas as pd 
+import statsmodels.formula.api as smf
+data1=pd.read_csv("https://hogut.weebly.com/uploads/1/8/1/6/18163409/cars.csv",delimiter=';')
+#data1 = pd.read_csv("/content/gdrive/My Drive/cars.csv",delimiter=';') 
+print(data1[:5])
+lndata1=np.log(data1)
+print(lndata1[:5])
+#Let's see descriptive statistics 
+print(data1.describe())
+print(lndata1.describe())
+#plot 
+plt.figure(1)
+plt.scatter(data1.speed, data1.dist,  color='black')
+
+
+plt.figure(2)
+plt.scatter(lndata1.speed, lndata1.dist,  color='red')
+
+
+results = smf.ols('dist ~ speed', data=data1).fit()
+lnresults= smf.ols('dist ~ speed', data=lndata1).fit()
+print(results.summary())
+print(lnresults.summary())
+ypred = results.predict()
+plt.figure(3)
+plt.plot(data1.speed, ypred, color='blue', linewidth=3)
+plt.scatter(data1.speed, data1.dist,  color='black')
+
+lnypred = lnresults.predict()
+plt.figure(4)
+plt.scatter(lndata1.speed, lndata1.dist,  color='red')
+plt.plot(lndata1.speed, lnypred, color='blue', linewidth=3)
